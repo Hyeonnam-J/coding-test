@@ -5,7 +5,7 @@ import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.List;
 
-public class MissileDefenseSystem {
+public class 요격시스템 {
 
     /*
         요격시스템
@@ -30,7 +30,9 @@ public class MissileDefenseSystem {
         3
      */
     
-     public static int solve(int[][] targets){
+     public static int 풀이(){
+        int[][] targets = new int[][]{{4, 5}, {4, 8}, {10, 14}, {11, 13}, {5, 12}, {3, 7}, {1, 4}};
+
         int answer = 0;
         List<int[]> list = new LinkedList<>(Arrays.asList(targets));
         list.sort(Comparator.comparingInt(o -> o[1]));
