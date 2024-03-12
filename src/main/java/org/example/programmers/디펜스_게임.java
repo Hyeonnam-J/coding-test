@@ -54,52 +54,32 @@ public class 디펜스_게임 {
         준호는 모든 공격에 무적권을 사용하여 4라운드까지 막을 수 있습니다.
      */
 
-    public static int 풀이(){
+    public static int 풀이() {
         int n = 7;
         int k = 3;
         int[] enemy = {4, 2, 4, 5, 3, 3, 1};
 
         int answer = 0;
 
-        Integer[] enemyInteger = new Integer[enemy.length];
-        for (int i = 0; i < enemy.length; i++) {
-            enemyInteger[i] = enemy[i];
+        if(k > enemy.length){
+            return enemy.length;
         }
 
-        Arrays.sort(enemyInteger, Collections.reverseOrder());
+//        Integer[] enemy_integer = new Integer[enemy.length];
+//        for (int i = 0; i < enemy.length; i++) {
+//            enemy_integer[i] = enemy[i];
+//        }
 
-        for(Integer e : enemyInteger){
-            System.out.println("enemyIntegerReverseOrder >>> "+e);
-        }
+        for (int i = 0; i < k + 1; i++) {
+            Integer[] tEnemy = new Integer[k + 1];
+            tEnemy[i] = enemy[i];
+            Arrays.sort(tEnemy, Collections.reverseOrder());
 
-        for(int i = 0; i < k; i++){
-            enemyInteger[i] = -1;
-        }
+            if(tEnemy[k + i] < n){
 
-        for(Integer e : enemyInteger){
-            System.out.println("enemyIntegerReverseOrderWithK >>> "+e);
-        }
-
-        Integer[] removeKEnemy = new Integer[enemyInteger.length - k];
-        int index = 0;
-        for(int i = 0; i < enemyInteger.length; i++){
-            if(enemyInteger[i] != -1){
-                removeKEnemy[index] = enemyInteger[i];
-                index++;
             }
         }
 
-        for(Integer e : removeKEnemy){
-            System.out.println("removeKEnemy >>> "+e);
-        }
-
-        for(Integer i : removeKEnemy){
-            n = n - i;
-            if(n >= 0) answer++;
-            else break;
-        }
-
-        answer = answer + k;
         return answer;
     }
 }
