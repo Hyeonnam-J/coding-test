@@ -65,21 +65,33 @@ public class 디펜스_게임 {
             return enemy.length;
         }
 
-//        Integer[] enemy_integer = new Integer[enemy.length];
-//        for (int i = 0; i < enemy.length; i++) {
-//            enemy_integer[i] = enemy[i];
-//        }
+        int roundExceptK = 1;
+        while(true){
+            int sum = 0;
 
-        for (int i = 0; i < k + 1; i++) {
-            Integer[] tEnemy = new Integer[k + 1];
-            tEnemy[i] = enemy[i];
-            Arrays.sort(tEnemy, Collections.reverseOrder());
+            Integer[] nEnemy = new Integer[k + roundExceptK];
 
-            if(tEnemy[k + i] < n){
+            for (int i = 0; i < k + roundExceptK; i++) {
+                nEnemy[i] = enemy[i];
+            }
+            Arrays.sort(nEnemy, Collections.reverseOrder());
 
+            for(int j = 0; j < k; j++){
+                nEnemy[j] = 0;
+            }
+
+            for(int s : nEnemy){
+                sum += s;
+            }
+
+            if(n >= sum) {
+                answer++;
+                roundExceptK++;
+            }else{
+                break;
             }
         }
 
-        return answer;
+        return answer + k;
     }
 }
