@@ -59,9 +59,13 @@ public class 디펜스_게임 {
         int k = 3;
         int[] enemy = {4, 2, 4, 5, 3, 3, 1};
 
+//        int n = 2;
+//        int k = 4;
+//        int[] enemy = {3, 3, 3, 3};
+
         int answer = 0;
 
-        if(k > enemy.length){
+        if(k >= enemy.length){
             return enemy.length;
         }
 
@@ -70,25 +74,42 @@ public class 디펜스_게임 {
             int sum = 0;
 
             Integer[] nEnemy = new Integer[k + roundExceptK];
+            // 1 / nEnemy.length = 4
+            // 2 / nEnemy.length = 5
+            // 3 / nEnemy.length = 6
 
             for (int i = 0; i < k + roundExceptK; i++) {
                 nEnemy[i] = enemy[i];
             }
             Arrays.sort(nEnemy, Collections.reverseOrder());
+            // 1 / nEnemy = {5, 4, 4, 2}
+            // 2 / nEnemy = {5, 4, 4, 3, 2}
+            // 3 / nEnemy = {5, 4, 4, 3, 3, 2}
 
             for(int j = 0; j < k; j++){
                 nEnemy[j] = 0;
             }
+            // 1 / nEnemy = {0, 0, 0, 2}
+            // 2 / nEnemy = {0, 0, 0, 3, 2}
+            // 3 / nEnemy = {0, 0, 0, 3, 3, 2}
 
             for(int s : nEnemy){
                 sum += s;
             }
+            // 1 / sum = 2
+            // 2 / sum = 5
+            // 3 / sum = 8
 
             if(n >= sum) {
                 answer++;
+                // 1 / 1
+                // 2 / 2
                 roundExceptK++;
+                // 1 / 2
+                // 2 / 3
             }else{
                 break;
+                // 3 / answer 2
             }
         }
 
