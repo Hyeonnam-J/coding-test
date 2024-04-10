@@ -1,9 +1,9 @@
 package org.example;
 
-import org.example.programmers.디펜스_게임;
+import org.example.programmers.가장_많이_받은_선물;
 
 public class Main {
     public static void main(String[] args) {
-        System.out.println( 디펜스_게임.풀이() );
+        System.out.println( 가장_많이_받은_선물.풀이() );
     }
 }

@@ -1,5 +1,7 @@
 package org.example.programmers;
 
+import java.util.HashMap;
+
 public class 가장_많이_받은_선물 {
 
     /*
@@ -44,7 +46,7 @@ public class 가장_많이_받은_선물 {
         muzi	                -	    0	    2	    0
         ryan	                3	    -	    0	    0
         frodo	                1	    1	    -	    0
-        neo	1	                0	    0	    -
+        neo	                    1       0	    0	    -
 
         이름	준 선물	받은 선물	선물 지수
         muzi	2	    5	        -3
@@ -91,9 +93,66 @@ public class 가장_많이_받은_선물 {
 
     public static int 풀이() {
         String[] friends = {"muzi", "ryan", "frodo", "neo"};
-        String[] gifts = {"muzi frodo", "muzi frodo", "ryan muzi", "ryan muzi", "ryan muzi", "frodo muzi", "frodo ryan", "neo muzi"};
+        String[] gifts = {
+            "muzi frodo",
+            "muzi frodo",
+            "ryan muzi",
+            "ryan muzi",
+            "ryan muzi",
+            "frodo muzi",
+            "frodo ryan",
+            "neo muzi"
+        };
+
+        // init giftPoint
+        HashMap<String, Integer> giftPointMap = new HashMap<>();
+        for(int i = 0; i < friends.length; i++){
+            giftPointMap.put(friends[i], 0);
+        }
+
+        // set giftPoint
+        for(String f: friends){
+            for(String g : gifts){
+                if(g.contains(f)){
+                    if(g.substring(0, g.indexOf(" ")).equals(f)){
+                        giftPointMap.put(f, giftPointMap.get(f)+1);
+                    }else{
+                        giftPointMap.put(f, giftPointMap.get(f)-1);
+                    }
+                }
+            }
+        }
+
+        // calc giftList
+        HashMap<String, Integer> calcGiftsNumberMap = new HashMap<>();
+        for(String g : gifts){
+            if(calcGiftsNumberMap.get(g) == null){
+                calcGiftsNumberMap.put(g, 1);
+            }else{
+                calcGiftsNumberMap.put(g, calcGiftsNumberMap.get(g)+1);
+            }
+        }
+
+        // todo this below
+
+        HashMap<String, Integer> calcGiftToBeReceivedMap = new HashMap<>();
+        for(String sendFriend : friends){
+            for(String receiveFriend : friends){
+                if(sendFriend.equals(receiveFriend)) continue;
+
+                String key = sendFriend + " " + receiveFriend;
+                String reverseKey = receiveFriend + " " + sendFriend;
+            }
+        }
 
         int answer = 0;
+        for(Integer i : calcGiftToBeReceivedMap.values()){
+            if(i > answer){
+                answer = i;
+            }
+        }
+        System.out.println("stop");
+        System.out.println("answer : "+answer);
         return answer;
     }
 }
