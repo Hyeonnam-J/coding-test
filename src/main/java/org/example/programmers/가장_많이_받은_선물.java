@@ -91,17 +91,28 @@ public class 가장_많이_받은_선물 {
         다음 달엔 아무도 선물을 받지 못합니다. 따라서 0을 return 해야 합니다.
      */
 
+    public static HashMap<String, Integer> calcGiftToBeReceivedMap = new HashMap<>();
+
     public static int 풀이() {
-        String[] friends = {"muzi", "ryan", "frodo", "neo"};
+//        String[] friends = {"muzi", "ryan", "frodo", "neo"};
+//        String[] gifts = {
+//            "muzi frodo",
+//            "muzi frodo",
+//            "ryan muzi",
+//            "ryan muzi",
+//            "ryan muzi",
+//            "frodo muzi",
+//            "frodo ryan",
+//            "neo muzi"
+//        };
+
+        String[] friends = {"joy", "brad", "alessandro", "conan", "david"};
         String[] gifts = {
-            "muzi frodo",
-            "muzi frodo",
-            "ryan muzi",
-            "ryan muzi",
-            "ryan muzi",
-            "frodo muzi",
-            "frodo ryan",
-            "neo muzi"
+            "alessandro brad",
+            "alessandro joy",
+            "alessandro conan",
+            "david alessandro",
+            "alessandro david"
         };
 
         // init giftPoint
@@ -133,15 +144,34 @@ public class 가장_많이_받은_선물 {
             }
         }
 
-        // todo this below
-
-        HashMap<String, Integer> calcGiftToBeReceivedMap = new HashMap<>();
         for(String sendFriend : friends){
             for(String receiveFriend : friends){
                 if(sendFriend.equals(receiveFriend)) continue;
 
                 String key = sendFriend + " " + receiveFriend;
                 String reverseKey = receiveFriend + " " + sendFriend;
+
+                if(calcGiftsNumberMap.get(key) != null){
+
+                    if(calcGiftsNumberMap.get(reverseKey) == null){
+                        addGiftNo(sendFriend);
+                    }else{
+                        if(calcGiftsNumberMap.get(key) > calcGiftsNumberMap.get(reverseKey)){
+                            addGiftNo(sendFriend);
+                        }else if(calcGiftsNumberMap.get(key) == calcGiftsNumberMap.get(reverseKey)){
+                            if(giftPointMap.get(sendFriend) > giftPointMap.get(receiveFriend)){
+                                addGiftNo(sendFriend);
+                            }
+                        }
+                    }
+
+                }else{
+                    if(calcGiftsNumberMap.get(reverseKey) == null){
+                        if(giftPointMap.get(sendFriend) > giftPointMap.get(receiveFriend)){
+                            addGiftNo(sendFriend);
+                        }
+                    }
+                }
             }
         }
 
@@ -151,8 +181,14 @@ public class 가장_많이_받은_선물 {
                 answer = i;
             }
         }
-        System.out.println("stop");
-        System.out.println("answer : "+answer);
         return answer;
+    }
+
+    public static void addGiftNo(String sendFriend){
+        if(calcGiftToBeReceivedMap.get(sendFriend) == null){
+            calcGiftToBeReceivedMap.put(sendFriend, 1);
+        }else{
+            calcGiftToBeReceivedMap.put(sendFriend, calcGiftToBeReceivedMap.get(sendFriend) + 1);
+        }
     }
 }
