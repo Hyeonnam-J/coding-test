@@ -94,25 +94,16 @@ public class 가장_많이_받은_선물 {
     public static HashMap<String, Integer> calcGiftToBeReceivedMap = new HashMap<>();
 
     public static int 풀이() {
-//        String[] friends = {"muzi", "ryan", "frodo", "neo"};
-//        String[] gifts = {
-//            "muzi frodo",
-//            "muzi frodo",
-//            "ryan muzi",
-//            "ryan muzi",
-//            "ryan muzi",
-//            "frodo muzi",
-//            "frodo ryan",
-//            "neo muzi"
-//        };
-
-        String[] friends = {"joy", "brad", "alessandro", "conan", "david"};
+        String[] friends = {"muzi", "ryan", "frodo", "neo"};
         String[] gifts = {
-            "alessandro brad",
-            "alessandro joy",
-            "alessandro conan",
-            "david alessandro",
-            "alessandro david"
+            "muzi frodo",
+            "muzi frodo",
+            "ryan muzi",
+            "ryan muzi",
+            "ryan muzi",
+            "frodo muzi",
+            "frodo ryan",
+            "neo muzi"
         };
 
         // init giftPoint
@@ -127,7 +118,7 @@ public class 가장_많이_받은_선물 {
                 if(g.contains(f)){
                     if(g.substring(0, g.indexOf(" ")).equals(f)){
                         giftPointMap.put(f, giftPointMap.get(f)+1);
-                    }else{
+                    }else if(g.substring(g.indexOf(" ")+1).equals(f)){
                         giftPointMap.put(f, giftPointMap.get(f)-1);
                     }
                 }
