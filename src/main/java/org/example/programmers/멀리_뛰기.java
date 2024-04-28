@@ -31,7 +31,21 @@ public class 멀리_뛰기 {
     public static long 풀이(){
         int n = 4;
 
+        int twoBlockMaxNo = n / 2;
+
         long answer = 0;
+
+        for(int twoBlockNo = twoBlockMaxNo; twoBlockNo > -1; twoBlockNo--){
+            int oneBlockNo = n - (twoBlockNo * 2);
+
+            if(oneBlockNo == 0 || twoBlockNo == 0) {
+                answer++;
+                continue;
+            }
+
+            int blockNo = twoBlockNo + oneBlockNo;
+        }
+
         return answer;
     }
 }
