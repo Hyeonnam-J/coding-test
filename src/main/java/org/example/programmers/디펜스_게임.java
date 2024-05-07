@@ -54,6 +54,7 @@ public class 디펜스_게임 {
         준호는 모든 공격에 무적권을 사용하여 4라운드까지 막을 수 있습니다.
      */
 
+    // 미결
     public static int 풀이() {
         int n = 7;
         int k = 3;
